@@ -4,8 +4,8 @@ using System.Collections;
 public class GroceryGeneric : MonoBehaviour {
 
 	//audio clips
-	public AudioClip hitSound;
-	public AudioClip breakSound;
+	public AudioClip dropSound;
+	public AudioClip moveSound;
 
 
 	//protected parameter interface
@@ -55,9 +55,9 @@ public class GroceryGeneric : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 
-		AudioClip bottleSound = (col.relativeVelocity.magnitude > 4) ? hitSound : breakSound;
+		AudioClip itemSound = (col.relativeVelocity.magnitude > 4) ? dropSound : moveSound;
 
-		AudioSource.PlayClipAtPoint (bottleSound, gameObject.transform.position);
+		AudioSource.PlayClipAtPoint (itemSound, gameObject.transform.position);
 		
 	}
 }
