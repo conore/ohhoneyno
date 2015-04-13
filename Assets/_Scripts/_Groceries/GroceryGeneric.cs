@@ -7,7 +7,6 @@ public class GroceryGeneric : MonoBehaviour {
 	public AudioClip dropSound;
 	public AudioClip moveSound;
 
-
 	//protected parameter interface
 	protected float _price;
 	protected string _displayName;
@@ -15,6 +14,8 @@ public class GroceryGeneric : MonoBehaviour {
 
 
 	//properties
+	private bool soundPlaying = false;
+
 	public string displayName { 
 		get {
 			return _displayName;
@@ -53,11 +54,19 @@ public class GroceryGeneric : MonoBehaviour {
 	
 	}
 
-	void OnCollisionEnter (Collision col) {
+	IEnumerator OnCollisionEnter (Collision col) {
 
-		AudioClip itemSound = (col.relativeVelocity.magnitude > 4) ? dropSound : moveSound;
+		if (!soundPlaying) {
+			
+			soundPlaying = true;
 
-		AudioSource.PlayClipAtPoint (itemSound, gameObject.transform.position);
+			AudioClip itemSound = (col.relativeVelocity.magnitude > 4) ? dropSound : moveSound;
+
+			AudioSource.PlayClipAtPoint (itemSound, gameObject.transform.position);
+
+			yield return new WaitForSeconds(0.5F);
+			soundPlaying = false;
+		}
 		
 	}
 }

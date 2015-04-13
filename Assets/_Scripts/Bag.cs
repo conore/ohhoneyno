@@ -5,6 +5,7 @@ public class Bag : MonoBehaviour {
 
 	public float moveSpeed = 200.0f;
 	public float bounceMultiplier = 2.0f;
+	public bool soundPlaying = false;
 	public AudioClip ohno;
 	public AudioClip item_move;
 	public AudioClip[] bagNoises;
@@ -37,12 +38,20 @@ public class Bag : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter (Collision col) {
+	IEnumerator OnCollisionEnter (Collision col) {
 
-		AudioClip loudSound = bagNoises[ Random.Range(0, bagNoises.Length)];
+		if (!soundPlaying) {
 
-		AudioClip bagSound = (col.relativeVelocity.magnitude > 4) ? loudSound : item_move;
+			soundPlaying = true;
 
-		AudioSource.PlayClipAtPoint (bagSound, gameObject.transform.position);
+			AudioClip loudSound = bagNoises [Random.Range (0, bagNoises.Length)];
+
+			AudioClip bagSound = (col.relativeVelocity.magnitude > 4) ? loudSound : item_move;
+
+			AudioSource.PlayClipAtPoint (bagSound, gameObject.transform.position);
+
+			yield return new WaitForSeconds(0.5F);
+			soundPlaying = false;
+		}
 	}
 }
