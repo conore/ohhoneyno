@@ -5,6 +5,9 @@ public class Bag : MonoBehaviour {
 
 	public float moveSpeed = 200.0f;
 	public float bounceMultiplier = 2.0f;
+	public AudioClip ohno;
+	public AudioClip item_drop;
+	public AudioClip item_move;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +32,18 @@ public class Bag : MonoBehaviour {
 			vel = new Vector3();
 			vel.y = (bounceMultiplier*Time.deltaTime*moveSpeed);
 			GetComponent<Rigidbody>().velocity = vel;
-
+			AudioSource.PlayClipAtPoint (ohno, this.gameObject.transform.position);
 			GameObject.Destroy (this.gameObject);
 		}
+	}
+
+	void OnCollisionEnter (Collision col) {
+		
+		if (col.relativeVelocity.magnitude > 4) {
+			AudioSource.PlayClipAtPoint (item_drop, gameObject.transform.position);
+		} else {
+			AudioSource.PlayClipAtPoint (item_move, gameObject.transform.position);
+		}
+		
 	}
 }
