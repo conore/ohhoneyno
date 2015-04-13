@@ -6,8 +6,8 @@ public class Bag : MonoBehaviour {
 	public float moveSpeed = 200.0f;
 	public float bounceMultiplier = 2.0f;
 	public AudioClip ohno;
-	public AudioClip item_drop;
 	public AudioClip item_move;
+	public AudioClip[] bagNoises;
 
 	// Use this for initialization
 	void Start () {
@@ -38,12 +38,11 @@ public class Bag : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision col) {
-		
-		if (col.relativeVelocity.magnitude > 4) {
-			AudioSource.PlayClipAtPoint (item_drop, gameObject.transform.position);
-		} else {
-			AudioSource.PlayClipAtPoint (item_move, gameObject.transform.position);
-		}
-		
+
+		AudioClip loudSound = bagNoises[ Random.Range(0, bagNoises.Length)];
+
+		AudioClip bagSound = (col.relativeVelocity.magnitude > 4) ? loudSound : item_move;
+
+		AudioSource.PlayClipAtPoint (bagSound, gameObject.transform.position);
 	}
 }

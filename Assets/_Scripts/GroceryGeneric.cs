@@ -46,9 +46,19 @@ public class GroceryGeneric : MonoBehaviour {
 			print ("WARNING: The grocery object does not have a rigidbody");
 		}
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void OnCollisionEnter (Collision col) {
+
+		AudioClip bottleSound = (col.relativeVelocity.magnitude > 4) ? hitSound : breakSound;
+
+		AudioSource.PlayClipAtPoint (bottleSound, gameObject.transform.position);
+		
 	}
 }
