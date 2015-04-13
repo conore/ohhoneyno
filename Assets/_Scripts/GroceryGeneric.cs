@@ -40,7 +40,6 @@ public class GroceryGeneric : MonoBehaviour {
 	protected void InitializeGroceryItem() {
 		Rigidbody rigidbody = this.GetComponent<Rigidbody> ();
 		if (rigidbody != null) {
-			print ("Setting mass to "+mass);
 			rigidbody.mass = mass;
 		} else {
 			print ("WARNING: The grocery object does not have a rigidbody");

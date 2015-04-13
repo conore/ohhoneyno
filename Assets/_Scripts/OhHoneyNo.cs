@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OhHoneyNo : MonoBehaviour {
 
-	public GameObject itemPrefab;
+	public GameObject[] groceries;
 	public float spawnHeight = 4.0f;
 
 	// Use this for initialization
@@ -28,8 +28,11 @@ public class OhHoneyNo : MonoBehaviour {
 			spawnPoint.x -= rand;
 			spawnPoint.z += rand;
 
+			//pick a product
+			GameObject itemType = groceries[Random.Range(0,groceries.Length)];
+
 			if (Input.GetKeyDown ("space")) {
-				GameObject.Instantiate (itemPrefab, spawnPoint, Quaternion.identity);
+				GameObject.Instantiate (itemType, spawnPoint, Quaternion.identity);
 			}
 		}
 	}
