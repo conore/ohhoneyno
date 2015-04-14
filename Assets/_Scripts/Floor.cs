@@ -16,8 +16,8 @@ public class Floor : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision col) {
-			
-		AudioSource.PlayClipAtPoint (floorCollide, gameObject.transform.position);
-		
+		if (col.relativeVelocity.magnitude > 4) {
+			AudioSource.PlayClipAtPoint (floorCollide, gameObject.transform.position);
+		}
 	}
 }
