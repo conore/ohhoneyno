@@ -26,6 +26,7 @@ public class Bag : MonoBehaviour {
 		AudioSource audioSource = Camera.main.GetComponent<AudioSource> ();
 
 		if (Input.GetAxis ("Horizontal") != 0) {
+			GetComponent<Rigidbody>().isKinematic = false;
 			vel.x = (Input.GetAxis ("Horizontal")*Time.deltaTime*moveSpeed);
 		}
 
