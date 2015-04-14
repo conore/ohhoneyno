@@ -6,6 +6,7 @@ public class GroceryGeneric : MonoBehaviour {
 	//audio clips
 	public AudioClip dropSound;
 	public AudioClip moveSound;
+	public ScoreIndicator scoreAnim;
 
 	//protected parameter interface
 	protected float _price;
@@ -51,7 +52,18 @@ public class GroceryGeneric : MonoBehaviour {
 	
 	}
 
+	void ShowScoreSprite(int score) {
+
+
+
+	}
+
 	IEnumerator OnCollisionEnter (Collision col) {
+
+		if (col.gameObject.tag == "floor") {
+			//TODO - implement a cool score idicator
+			//ScoreIndicator si = Instantiate(scoreAnim, this.transform.position, Quaternion.Euler(180,0,0)) as ScoreIndicator;
+		}
 
 		if (!soundPlaying) {
 			
@@ -64,6 +76,8 @@ public class GroceryGeneric : MonoBehaviour {
 			yield return new WaitForSeconds(0.5F);
 			soundPlaying = false;
 		}
+
+
 		
 	}
 }
