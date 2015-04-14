@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Apple : GroceryGeneric {
 
 	// Use this for initialization
-	void Start () {
-		_displayName = "A mealy apple";
+	void Awake () {
+		_displayName = "A Fuji apple!";
 		_price = 5.0f;
 		_mass = .2f;
 		InitializeGroceryItem ();

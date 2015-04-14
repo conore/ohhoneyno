@@ -4,8 +4,8 @@ using System.Collections;
 public class Jager : GroceryGeneric {
 	
 	// Use this for initialization
-	void Start () {
-		_displayName = "Disgusting Eurpoean Liquor";
+	void Awake () {
+		_displayName = "Disgusting Eurpoean Liquor!";
 		_price = 35.0f;
 		_mass = 2.0f;
 		InitializeGroceryItem ();

@@ -22,7 +22,7 @@ public class GroceryGeneric : MonoBehaviour {
 		}
 	}
 
-	public float  price { 
+	public float price { 
 		get {
 			return _price;
 		}
@@ -32,9 +32,6 @@ public class GroceryGeneric : MonoBehaviour {
 		get {
 			return _mass;
 		}
-	}
-
-	public void Start() {
 	}
 
 	//initialization
