@@ -22,7 +22,9 @@ public class Bag : MonoBehaviour {
 	void FixedUpdate() {
 
 		Vector3 vel = new Vector3 ();
-		
+
+		AudioSource audioSource = Camera.main.GetComponent<AudioSource> ();
+
 		if (Input.GetAxis ("Horizontal") != 0) {
 			vel.x = (Input.GetAxis ("Horizontal")*Time.deltaTime*moveSpeed);
 		}
@@ -33,6 +35,7 @@ public class Bag : MonoBehaviour {
 			vel = new Vector3();
 			vel.y = (bounceMultiplier*Time.deltaTime*moveSpeed);
 			GetComponent<Rigidbody>().velocity = vel;
+			audioSource.Stop ();
 			AudioSource.PlayClipAtPoint (ohno, this.gameObject.transform.position);
 			GameObject.Destroy (this.gameObject);
 		}
