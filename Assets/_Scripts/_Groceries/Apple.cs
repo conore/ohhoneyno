@@ -13,6 +13,6 @@ public class Apple : GroceryGeneric {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		CurseIfDropped ();
 	}
 }

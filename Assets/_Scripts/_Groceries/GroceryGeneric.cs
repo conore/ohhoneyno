@@ -12,10 +12,11 @@ public class GroceryGeneric : MonoBehaviour {
 	protected float _price;
 	protected string _displayName;
 	protected float _mass;
-
-
+	public AudioClip[] curse;
+	
 	//properties
 	private bool soundPlaying = false;
+	private bool itemDropped = false;
 
 	public string displayName { 
 		get {
@@ -44,18 +45,37 @@ public class GroceryGeneric : MonoBehaviour {
 			print ("WARNING: The grocery object does not have a rigidbody");
 		}
 	}
-
-
 	
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void ShowScoreSprite(int score) {
 
 
 
+	}
+
+	protected void CurseIfDropped () {
+
+		if (!itemDropped) {
+
+			Rigidbody rigidbody = this.GetComponent<Rigidbody> ();
+			GameObject bag = GameObject.FindGameObjectWithTag ("bag");
+			Vector3 groceryPosition = new Vector3 (0, 0, 0);
+
+			if (GetComponent<Rigidbody> () != null) {
+
+				groceryPosition = rigidbody.transform.position;
+
+				if (bag != null && groceryPosition.y < 0) {
+					itemDropped = true;
+					AudioSource.PlayClipAtPoint (curse [Random.Range (0, curse.Length)], groceryPosition);
+				}
+			}
+		}
 	}
 
 	IEnumerator OnCollisionEnter (Collision col) {
@@ -65,7 +85,7 @@ public class GroceryGeneric : MonoBehaviour {
 			//ScoreIndicator si = Instantiate(scoreAnim, this.transform.position, Quaternion.Euler(180,0,0)) as ScoreIndicator;
 		}
 
-		if (!soundPlaying) {
+		if (!soundPlaying && col.relativeVelocity.magnitude > 1) {
 			
 			soundPlaying = true;
 

@@ -44,7 +44,7 @@ public class Bag : MonoBehaviour {
 
 	IEnumerator OnCollisionEnter (Collision col) {
 
-		if (!soundPlaying) {
+		if (!soundPlaying && col.relativeVelocity.magnitude > 1 ) {
 
 			soundPlaying = true;
 
