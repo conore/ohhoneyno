@@ -95,7 +95,7 @@ public class GroceryGeneric : MonoBehaviour {
 
 					ScoreIndicator si = Instantiate(scoreAnim, startPostition, Quaternion.Euler(0,0,0)) as ScoreIndicator;
 
-					OhHoneyNo.S.AddEmbarassment(this.price);
+					OhHoneyNo.S.AddEmbarrassment(this.price);
 
 					scored = true;
 				}

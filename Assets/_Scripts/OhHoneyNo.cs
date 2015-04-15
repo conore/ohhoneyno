@@ -16,7 +16,7 @@ public class OhHoneyNo : MonoBehaviour {
 	// UI Elements
 	public Text costLabel;
 	public Text itemLabel;
-	public Text embarassmentLabel;
+	public Text embarrassmentLabel;
 
 	public bool containerBroke = false;
 
@@ -79,12 +79,12 @@ public class OhHoneyNo : MonoBehaviour {
 		costLabel.text = currCost.ToString();
 	}
 
-	public void AddEmbarassment(float embarassment) {
+	public void AddEmbarrassment(float embarrassment) {
 
-		float currEmbarassment = float.Parse (embarassmentLabel.text);
+		float currEmbarrassment = float.Parse (embarrassmentLabel.text);
 		
-		currEmbarassment += embarassment;
+		currEmbarrassment += embarrassment;
 		
-		embarassmentLabel.text = currEmbarassment.ToString();
+		embarrassmentLabel.text = currEmbarrassment.ToString();
 	}
 }
