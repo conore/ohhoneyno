@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class OhHoneyNo : MonoBehaviour {
 
+	//sigleton
+	public static OhHoneyNo S;
+
 	public GroceryGeneric[] groceryTypes;
 	public List<GroceryGeneric> groceries;
 
@@ -14,10 +17,12 @@ public class OhHoneyNo : MonoBehaviour {
 	public Text costLabel;
 	public Text ItemLabel;
 
+	public bool containerBroke = false;
+
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+		S = this;
 	}
 	
 	// Update is called once per frame

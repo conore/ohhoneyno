@@ -39,6 +39,7 @@ public class Bag : MonoBehaviour {
 			audioSource.Stop ();
 			AudioSource.PlayClipAtPoint (ohno, this.gameObject.transform.position);
 			GameObject.Destroy (this.gameObject);
+			OhHoneyNo.S.containerBroke = true;
 		}
 	}
 
