@@ -18,6 +18,9 @@ public class GroceryGeneric : MonoBehaviour {
 	private bool soundPlaying = false;
 	private bool itemDropped = false;
 
+	//semaphores
+	bool scored = false;
+
 	public string displayName { 
 		get {
 			return _displayName;
@@ -81,8 +84,20 @@ public class GroceryGeneric : MonoBehaviour {
 	IEnumerator OnCollisionEnter (Collision col) {
 
 		if (col.gameObject.tag == "floor") {
-			//TODO - implement a cool score idicator
-			//ScoreIndicator si = Instantiate(scoreAnim, this.transform.position, Quaternion.Euler(180,0,0)) as ScoreIndicator;
+
+			if (!scored) {
+
+				if (OhHoneyNo.S.containerBroke) {
+
+					Vector3 startPostition = this.transform.position;
+
+					startPostition.y += 12;
+
+					ScoreIndicator si = Instantiate(scoreAnim, startPostition, Quaternion.Euler(0,0,0)) as ScoreIndicator;
+
+					scored = true;
+				}
+			}
 		}
 
 		if (!soundPlaying && col.relativeVelocity.magnitude > 1) {
