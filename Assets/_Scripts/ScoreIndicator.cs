@@ -23,8 +23,6 @@ public class ScoreIndicator : MonoBehaviour {
 		if (transform.position.y < maxHeight) {
 			Vector3 position = transform.position;
 
-			print (position.y);
-
 			position.y += .5f;
 
 			transform.position = position;

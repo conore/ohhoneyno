@@ -15,7 +15,8 @@ public class OhHoneyNo : MonoBehaviour {
 
 	// UI Elements
 	public Text costLabel;
-	public Text ItemLabel;
+	public Text itemLabel;
+	public Text embarassmentLabel;
 
 	public bool containerBroke = false;
 
@@ -62,15 +63,28 @@ public class OhHoneyNo : MonoBehaviour {
 
 		grocery = GroceryGeneric.Instantiate (itemType, spawnPoint, Quaternion.identity) as GroceryGeneric;
 
-		float currCost = float.Parse (costLabel.text);
+		AddCost (grocery.price);
 
-		currCost += grocery.price;
-
-		costLabel.text = currCost.ToString();
-
-		ItemLabel.text = grocery.displayName;
+		itemLabel.text = grocery.displayName;
 
 		return grocery;
 
+	}
+
+	public void AddCost(float cost) {
+		float currCost = float.Parse (costLabel.text);
+		
+		currCost += cost;
+		
+		costLabel.text = currCost.ToString();
+	}
+
+	public void AddEmbarassment(float embarassment) {
+
+		float currEmbarassment = float.Parse (embarassmentLabel.text);
+		
+		currEmbarassment += embarassment;
+		
+		embarassmentLabel.text = currEmbarassment.ToString();
 	}
 }
