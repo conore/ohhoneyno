@@ -22,10 +22,13 @@ public class ScoreIndicator : MonoBehaviour {
 
 		if (transform.position.y < maxHeight) {
 			Vector3 position = transform.position;
+			Vector3 scale = transform.localScale;
 
 			position.y += .5f;
+			scale.x += .5f;
 
 			transform.position = position;
+			transform.localScale = scale;
 		} else {
 			Destroy (this.gameObject);
 		}
